@@ -575,8 +575,18 @@ function propagateItemsByPositionIndex(/* arr */) {
  *    shiftArray(['a', 'b', 'c', 'd'], -1) => ['b', 'c', 'd', 'a']
  *    shiftArray([10, 20, 30, 40, 50], -3) => [40, 50, 10, 20, 30]
  */
-function shiftArray(/* arr, n */) {
-  throw new Error('Not implemented');
+function shiftArray(arr, n) {
+  // throw new Error('Not implemented');
+  let copyArr;
+  let temp = [];
+  if (n < 0) {
+    temp = arr.splice(Math.abs(n));
+    copyArr = arr.splice(0, Math.abs(n));
+  } else {
+    temp = arr.slice(arr.length - n);
+    copyArr = arr.splice(0, n + 1);
+  }
+  return [...temp, ...copyArr];
 }
 
 /**
@@ -592,8 +602,24 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  // throw new Error('Not implemented');
+  const digits = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
+
+  return arr.sort(function sortArr(a, b) {
+    return digits.indexOf(a) - digits.indexOf(b);
+  });
 }
 
 /**
